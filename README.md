@@ -13,4 +13,4 @@
 编写完成后，在项目目录里执行php build.php便可。
 
 ## 开始阅读
-[开始阅读](<index.md>)
+[开始阅读](<blob/master/index.md>)
