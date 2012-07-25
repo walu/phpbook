@@ -174,8 +174,8 @@
 
 
 ## links
-   * [《PHP扩展开发及内核应用》](<index.md>)
-   * [PHP的生命周期](<1.md>)
+   * index [《PHP扩展开发及内核应用》](<index.md>)
+   * 1 [PHP的生命周期](<1.md>)
 
 ## LastModified 
    * $Id$

@@ -26,7 +26,6 @@
     <li>五、感谢Google、Baidu搜索引擎。</li>
     <li>... ...
 	</ul>
-
 ## About Me
 网名：Walu<br /> 
 曾用名：Cnan<br /> 
@@ -42,8 +41,8 @@ Blog:http://walu.sinaapp.com
 
 
 ## links
-   * []()
-   * [《PHP扩展开发及内核应用》目录](<preface.md>)
+   * 0 []()
+   * preface [《PHP扩展开发及内核应用》目录](<preface.md>)
 
 ## LastModified 
    * $Id$
