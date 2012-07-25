@@ -1,9 +1,7 @@
 # preface 《PHP扩展开发及内核应用》目录 
 
-
-
 目录中汉字部分代表已经翻译完成的章节，带链接的表示已经发布的，未待链接的表示正在校正即将发布的。
-		<ul class="catalog">
+<ul class="catalog">
 			<li> [1. PHP的生命周期](ch1.html) </li>
 			<li><ul>
 				<li> [1. 让我们从SAPI开始](ch1.1.html) </li>
