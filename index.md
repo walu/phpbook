@@ -16,11 +16,10 @@
    * *博客： [http://walu.sinaapp.com](http://walu.sinaapp.com)*
 
 本人不才，这个项目刚刚起步，我就已经碰到了很多的困难，期间得到了许多帮助，这里记录下来，以示感谢：
-   * 一、感谢Sara在2005年创作了本书。
-   * 二、感谢小胖姜。
-   * 三、感谢laruence大牛与你的博客。
-   * 四、感谢TIPI项目及项目三哥。
-   * 五、感谢Google、Baidu搜索引擎。
+   * 感谢Sara在2005年创作了[本书](http://www.amazon.com/Extending-Embedding-PHP-Sara-Golemon/dp/067232704X)。
+   * 感谢小胖姜。
+   * 感谢laruence大牛与你的[博客](http://www.laruence.com)。
+   * 感谢TIPI项目, Goolg, Baidu。
    * ....
 
 ## About Me
