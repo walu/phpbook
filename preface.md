@@ -177,7 +177,7 @@
 
 ## links
    * [《PHP扩展开发及内核应用》](<index.md>)
-   * [PHP中的面向对象（一）](<1.md>)
+   * [PHP的生命周期](<1.md>)
 
 ## LastModified 
    * $Id$
