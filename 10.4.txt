@@ -1,0 +1,118 @@
+继承与实现接口
+10.3
+10.5
+#
+<p>在定义一个类时往往会使其继承某个父类或者实现某个接口，在扩展中实现这个功能非常方便。下面我先给出PHP语言中的代码。</p>
+<code php>
+<?php
+interface i_myinterface
+{
+	public function hello();
+}
+
+class parent_class implements i_myinterface
+{
+	public function hello()
+	{
+		echo "Good Morning!\n";
+	}
+}
+
+final class myclass extends parent_class
+{
+	public function call_hello()
+	{
+		$this->hello();
+	}
+}
+</code>
+
+<p>上面的代码我们已经非常熟悉了，它们在PHP扩展中的实现应该是这样的：</p>
+<code c>
+
+//三个zend_class_entry
+zend_class_entry *i_myinterface_ce,*parent_class_ce,*myclass_ce;
+
+//parent_class的hello方法
+ZEND_METHOD(parent_class,hello)
+{
+	php_printf("hello world!\n");
+}
+
+//myclass的call_hello方法
+ZEND_METHOD(myclass,call_hello)
+{
+	//这里涉及到如何调用对象的方法，详细内容下一章叙述
+	zval *this_zval;
+	this_zval = getThis();
+	zend_call_method_with_0_params(&this_zval,myclass_ce,NULL,"hello",NULL);
+}
+
+//各自的zend_function_entry
+static zend_function_entry i_myinterface_method[]={
+	ZEND_ABSTRACT_ME(i_myinterface,	hello,	NULL)
+	{NULL,NULL,NULL}
+};
+
+static zend_function_entry parent_class_method[]={
+	ZEND_ME(parent_class,hello,NULL,ZEND_ACC_PUBLIC)
+	{NULL,NULL,NULL}
+};
+
+static zend_function_entry myclass_method[]={
+	ZEND_ME(myclass,call_hello,NULL,ZEND_ACC_PUBLIC)
+	{NULL,NULL,NULL}
+};
+
+ZEND_MINIT_FUNCTION(test)
+{
+	zend_class_entry ce,p_ce,i_ce;
+	INIT_CLASS_ENTRY(i_ce,"i_myinterface",i_myinterface_method);
+	i_myinterface_ce = zend_register_internal_interface(&i_ce TSRMLS_CC);
+	
+	
+	//定义父类，最后使用zend_class_implements函数声明它实现的接口
+	INIT_CLASS_ENTRY(p_ce,"parent_class",parent_class_method);
+	parent_class_ce = zend_register_internal_class(&p_ce TSRMLS_CC);
+	zend_class_implements(parent_class_ce TSRMLS_CC,1,i_myinterface_ce);
+
+	//定义子类，使用zend_register_internal_class_ex函数
+	INIT_CLASS_ENTRY(ce,"myclass",myclass_method);
+	myclass_ce = zend_register_internal_class_ex(&ce,parent_class_ce,"parent_class" TSRMLS_CC);
+	//注意：ZEND_ACC_FINAL是用来修饰方法的，而ZEND_ACC_FINAL_CLASS是用来修饰类的
+	myclass_ce->ce_flags |= ZEND_ACC_FINAL_CLASS;
+	return SUCCESS;
+}
+</code>
+<p>这样，当我们在PHP语言中进行如下操作时，便会得到预期的输出：</p>
+<code php>
+<?php
+$obj = new myclass();
+$obj->hello();
+/*
+输出内容：
+walu@walu-ThinkPad-Edge:/cnan/program/php-5.3.6/ext/test$ php test.php 
+hello world!
+*/
+</code>
+<p>这里的ZEND_ABSTRACT_ME()宏函数比较特殊，它会声明一个abstract public类型的函数，这个函数不需要我们实现，因此也就不需要相应的ZEND_METHOD(i_myinterface,hello){...}的实现。一般来说，一个接口是不能设计出某个非public类型的方法的，因为接口暴露给使用者的都应该是一些公开的信息。不过如果你非要这么设计，那也不是办不到，只要别用ZEND_ABSTRACT_ME()宏函数就行了，而用它的底层实现ZEND_FN()宏函数</p>
+<code c>
+//它可以对应<?php ...public static function apply_request();...的接口方法声明。
+static zend_function_entry i_myinterface[]=
+{
+	ZEND_FENTRY(apply_request, NULL, NULL, ZEND_ACC_STATIC|ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
+	{NULL,NULL,NULL}
+};
+</code>
+<p>这样，只要掩码中有ZEND_ACC_ABSTRACT，便代表是一个不需要具体实现的方法。ZEND_FENTRY其实是ZEND_ME和ZEND_FE的最终实现，现在我们把这一组宏罗列在这一次展开，供你参考使用。</p>
+<code c>
+#define ZEND_FENTRY(zend_name, name, arg_info, flags)	{ #zend_name, name, arg_info, (zend_uint) (sizeof(arg_info)/sizeof(struct _zend_arg_info)-1), flags },
+
+#define ZEND_FN(name) zif_##name
+
+#define ZEND_MN(name) zim_##name
+
+#define ZEND_FE(name, arg_info)						ZEND_FENTRY(name, ZEND_FN(name), arg_info, 0)
+
+#define ZEND_ME(classname, name, arg_info, flags)	ZEND_FENTRY(name, ZEND_MN(classname##_##name), arg_info, flags)
+</code>

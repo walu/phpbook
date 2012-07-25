@@ -1,0 +1,34 @@
+zend_class_entry
+10
+10.2
+#
+<p>zend_class_entry是内核中定义的一个结构体，是内核实现PHP语言中类与对象的一个非常基础、关键的结构类型。他就相当于我们定义的类的原型。</p>
+
+<p>如果我们想获得一个名字为myclass的类该怎么做呢？首先我们定义一个zend_class_entry变量，并为它设置名字，最后注册到runtime中去。</p>
+
+<code c>
+zend_class_entry *myclass_ce;
+
+
+static zend_function_entry myclass_method[] = {
+    { NULL, NULL, NULL }
+};
+
+ZEND_MINIT_FUNCTION(sample3)
+{
+    zend_class_entry ce;
+    
+    //"myclass"是这个类的名称。
+    INIT_CLASS_ENTRY(ce, "myclass",myclass_method);
+    myclass_ce = zend_register_internal_class(&ce TSRMLS_CC);
+    return SUCCESS;
+}
+</code>
+
+<p>这样我们便定义了一个类myclass，而且我们可以正常的在PHP语言中使用它，比如：</p>
+<code php>
+<?php
+$obj = new myclass();
+</code>
+
+<p>我们上面还定义了一个myclass_ce指针，他是干什么用的呢？当我们在扩展中对这个类进行操作，比如生成实例的时候，会使用到它，它的作用就类似与打开文件的操作句柄。</p>

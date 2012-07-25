@@ -1,0 +1,95 @@
+生成对象的实例
+11
+11.2
+#
+<p>为了操作一个对象，我们需要先获取这个对象的实例，而这有肯定会涉及调用对象的构造方法。有关如何在扩展中调用PHP的函数与对象的方法这里不展开描述了，大家可以看我的另一篇博文：<a href="http://walu.sinaapp.com/?p=159" target="_blank">在PHP扩展中通过C语言调用PHP函数与方法</a></p>
+
+<p>首先我们先了解下一个object在PHP内核中到底是如何实现的。</p>
+<code c>
+typedef struct _zend_object_value {
+	zend_object_handle handle;
+	zend_object_handlers *handlers;
+} zend_object_value;
+
+//此外再回顾一下zval的值value的结构。
+typedef union _zvalue_value {
+	long lval;					/* long value */
+	double dval;				/* double value */
+	struct {
+		char *val;
+		int len;
+	} str;
+	HashTable *ht;				/* hash table value */
+	zend_object_value obj;
+} zvalue_value;
+</code>
+<p>如果我们有一个zval *tmp，那么tmp->value.obj来访问到最终保存对象实例的zend_object_value结构体，它包含两个成员：</p>
+<ul>
+	<li>zend_object_handle handle：最终实现是一个unsigned int值，Zend会把每个对象放进数组里，这个handle就是此实例的索引。所以我们在把对象当作参数传递时，只不过是传递的handle罢了，这样对性能有利，同时也是对象的引用机制的原理。</li>
+	<li>zend_object_handlers *handlers：这个里面是一组函数指针，我们可以通过它来对象进行一些操作，比如：添加引用、获取属性等。此结构体在Zend/zend_object_handlers.h里定义。</li>
+</ul>
+
+<p>下面我给出这个类的PHP语言实现，让我们在扩展中实现它，并生成它。</p>
+<code php>
+<?php
+class baby
+{
+	public function __construct()
+	{
+		echo "a new baby!\n";
+	}	
+	
+	public function hello()
+	{
+		echo "hello world!\n";
+	}
+}
+
+function test_call()
+{
+	$obj = new baby();
+	$obj->hello();
+}
+</code>
+<p>下面我们在扩展中实现以上test_call函数。</p>
+<code c>
+zend_class_entry *baby_ce;
+
+ZEND_FUNCTION(test_call)
+{
+	zval *obj;
+	MAKE_STD_ZVAL(obj);
+	object_init_ex(obj, baby_ce);
+	
+	//如果确认此类没有构造函数就不用调用了。
+	walu_call_user_function(NULL, obj, "__construct", "");
+	
+	walu_call_user_function(NULL, obj, "hello", "");
+	zval_ptr_dtor(&obj);
+	return;
+}
+
+ZEND_METHOD(baby, __construct)
+{
+	printf("a new baby!\n");
+}
+
+ZEND_METHOD(baby, hello)
+{
+	printf("hello world!!!!!\n");
+}
+
+static zend_function_entry baby_method[]={
+	ZEND_ME(baby, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	ZEND_ME(baby, hello, NULL, ZEND_ACC_PUBLIC)
+	{NULL, NULL, NULL}
+};
+
+ZEND_MINIT_FUNCTION(test)
+{
+	zend_class_entry ce;
+	INIT_CLASS_ENTRY(ce, "baby", baby_method);
+	baby_ce = zend_register_internal_class(&ce TSRMLS_CC);
+	return SUCCESS;
+}
+</code>

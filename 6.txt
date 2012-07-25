@@ -1,0 +1,29 @@
+函数返回值
+5.5
+6.1
+#
+<p>本章目录：<ul class="catalog">
+				<li><a href="ch6.1.html">1. 一个特殊的参数：return_value</a></li>
+				<li><a href="ch6.2.html">2. 引用与函数的执行结果</a></li>
+				<li><a href="ch6.3.html">3. 小结</a></li>
+		</ul></p>
+
+<p>PHP语言中函数的返回值是通过return来完成了，就像下面的程序：</p>
+<code php>
+<?php
+function sample_long() {
+  return 42;
+}
+$bar = sample_long();
+</code>
+<p>C语言也一样使用return关键字</p>
+<code c>
+int sample_long(void) {
+	return 42;
+}
+int main(void) {
+	int bar = sample_long();
+	return 1;
+}
+</code>
+<p>那我们在扩展中编写的PHP函数如何把返回值回馈给用户端的函数调用者呢？看好，这里指的是回馈给，而不是单单的return～</p>

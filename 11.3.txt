@@ -1,0 +1,6 @@
+小结
+11.2
+0
+#
+有关面向对象的对象实在是太多了，我也是才学而已，没有办法给出非常系统、完整的阐述，但以后我会陆陆续续的在博客里写出来的。此外，强烈建议大家看看php官方的这篇wiki。
+<a href="https://wiki.php.net/internals/engine/objects">internals:engine:objects</a>

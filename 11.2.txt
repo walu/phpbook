@@ -1,0 +1,88 @@
+读写对象的属性
+11.1
+11.3
+#
+<p>在上一节里我们已经看了下如何操作一个对象的方法，这一节主要描述与对象属性有关的东西。有关如何对它进行定义的操作我们已经在上一章中描述过了，这里不再叙述，只讲对其的操作。</p>
+<h2>读取对象的属性</h2>
+<code c>
+ZEND_API zval *zend_read_property(zend_class_entry *scope, zval *object, char *name, int name_length, zend_bool silent TSRMLS_DC);
+
+ZEND_API zval *zend_read_static_property(zend_class_entry *scope, char *name, int name_length, zend_bool silent TSRMLS_DC);
+</code>
+<p>zend_read_property函数用于读取对象的属性，而zend_read_static_property则用于读取静态属性。可以看出，静态属性是直接保存在类上的，用具体的对象无关。</p>
+<p>silent参数：</p>
+<ul>
+	<li>0: 如果属性不存在，则抛出一个notice错误。</li>
+	<li>1: 如果属性不存在，不报错。</li>
+</ul>
+<p>如果所查的属性不存在，那么此函数将返回IS_NULL类型的zval。</p>
+
+<h3>更新对象的属性</h3>
+<code c>
+ZEND_API void zend_update_property(zend_class_entry *scope, zval *object, char *name, int name_length, zval *value TSRMLS_DC);
+ZEND_API int zend_update_static_property(zend_class_entry *scope, char *name, int name_length, zval *value TSRMLS_DC);
+</code>
+<p>zend_update_property用来更新对象的属性，zend_update_static_property用来更新类的静态属性。如果对象或者类中没有相关的属性，函数将自动的添加上。</p>
+
+<h3>读写对象与类属性的实例</h3>
+<p>假设我们已经在扩展中定义好下面的类：</p>
+<code php>
+class baby
+{
+	public $age;
+	public static $area;
+	
+	public function __construct($age, $area)
+	{
+		$this->age = $age;
+		self::$area = $area;
+		
+		var_dump($this->age, self::$area);
+	}
+}
+
+ZEND_METHOD(baby, __construct)
+{
+	zval *age, *area;
+	zend_class_entry *ce;
+	ce = Z_OBJCE_P(getThis());
+	if( zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "zz", &age, &area) == FAILURE )
+	{
+		printf("Error\n");
+		RETURN_NULL();
+	}
+	zend_update_property(ce, getThis(), "age", sizeof("age")-1, age TSRMLS_CC);
+	zend_update_static_property(ce, "area", sizeof("area")-1, area TSRMLS_CC);
+	
+	age = NULL;
+	area = NULL;
+	
+	age = zend_read_property(ce, getThis(), "age", sizeof("age")-1, 0 TSRMLS_DC);
+	php_var_dump(&age, 1 TSRMLS_CC);
+	
+	area = zend_read_static_property(ce, "area", sizeof("area")-1, 0 TSRMLS_DC);
+	php_var_dump(&area, 1 TSRMLS_CC);
+	
+}
+</code>
+<div class="tip-common">
+感谢 <a href="http://weibo.com/taokuizu" target="_blank">@看你取的破名</a> 发现的错误。
+</div>
+<h3>一些其它的快捷函数</h3>
+<h4>更新对象与类的属性</h4>
+<code c>
+ZEND_API void zend_update_property_null(zend_class_entry *scope, zval *object, char *name, int name_length TSRMLS_DC);
+ZEND_API void zend_update_property_bool(zend_class_entry *scope, zval *object, char *name, int name_length, long value TSRMLS_DC);
+ZEND_API void zend_update_property_long(zend_class_entry *scope, zval *object, char *name, int name_length, long value TSRMLS_DC);
+ZEND_API void zend_update_property_double(zend_class_entry *scope, zval *object, char *name, int name_length, double value TSRMLS_DC);
+ZEND_API void zend_update_property_string(zend_class_entry *scope, zval *object, char *name, int name_length, const char *value TSRMLS_DC);
+ZEND_API void zend_update_property_stringl(zend_class_entry *scope, zval *object, char *name, int name_length, const char *value, int value_length TSRMLS_DC);
+
+
+ZEND_API int zend_update_static_property_null(zend_class_entry *scope, char *name, int name_length TSRMLS_DC);
+ZEND_API int zend_update_static_property_bool(zend_class_entry *scope, char *name, int name_length, long value TSRMLS_DC);
+ZEND_API int zend_update_static_property_long(zend_class_entry *scope, char *name, int name_length, long value TSRMLS_DC);
+ZEND_API int zend_update_static_property_double(zend_class_entry *scope, char *name, int name_length, double value TSRMLS_DC);
+ZEND_API int zend_update_static_property_string(zend_class_entry *scope, char *name, int name_length, const char *value TSRMLS_DC);
+ZEND_API int zend_update_static_property_stringl(zend_class_entry *scope, char *name, int name_length, const char *value, int value_length TSRMLS_DC);
+</code>

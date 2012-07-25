@@ -1,0 +1,60 @@
+创建PHP变量
+2.2
+2.4
+#
+		<p>我们已经知道php变量在内核中其实是通过zval结构来实现的，也初步了如果设置一个zval结构的类型和值，这一节我们的目的便是在前两节的基础上，彻底掌握对zval结构的操控，其间将引入很多超棒的新的宏。</p>
+		<p>在code的时候，我们很希望在内核中创建的zval可以让用户在PHP语言里以变量的形式使用，为了实现这个功能，我们首先要创建一个zval。最容易想到的办法便是创建一个zval指针，然后申请一块内存并让指针指向它。如果你脑海里浮现出了malloc(sizeof(zval))的影子，那么请你立即刹车，不要用malloc来做这件事情，内核给我们提供了相应的宏来处理这件事，理由和以前一样：为了代码漂亮并保持版本升级时的兼容性。这个宏的是：MAKE_STD_ZVAL(pzv)。这个宏会用内核的方式来申请一块内存并将其地址付给pzv，并初始化它的refcount和is_ref连个属性，更棒的是，它不但会自动的处理内存不足问题，还会在内存中选个最优的位置来申请。</p>
+		<p class="note">除了MAKE_STD_ZVAL()宏函数，ALLOC_INIT_ZVAL()宏函数也是用来干这件事的，唯一的不同便是它会将pzv所指的zval的类型设置为IS_NULL;</p>
+		<p>申请完空间后，我们便可以给这个zval赋值了。基于咱已经介绍的宏，也许我们需要Z_TYPE_P(p) = IS_NULL来设置其是null类型，并过Z_SOMEVAL形式的宏来为它赋值，但是现在你有了更好更短的选择！</p>
+		<p>内核中提供一些宏来简化我们的操作，可以只用一步便设置好zval的类型和值。</p>
+		<p><table class="table-common">
+			<tr>
+				<td>新宏</td>
+				<td>其它宏的实现方法</td>
+			</tr>
+			<tr>
+				<td>ZVAL_NULL(pvz); <span class="ps">(注意这个Z和VAL之间没有下划线！)</span></td>
+				<td>Z_TYPE_P(pzv) = IS_NULL;<span class="ps">(IS_NULL型不用赋值，因为这个类型只有一个值就是null，^_^)</span></td>
+			</tr>
+			<tr>
+				<td>ZVAL_BOOL(pzv, b); <span class="ps">(将pzv所指的zval设置为IS_BOOL类型，值是b)</span></td>
+				<td>Z_TYPE_P(pzv) = IS_BOOL;<br />Z_BVAL_P(pzv) = b ? 1 : 0;</td>
+			</tr>
+			<tr>
+				<td>ZVAL_TRUE(pzv); <span class="ps">(将pzv所指的zval设置为IS_BOOL类型，值是true)</span></td>
+				<td>ZVAL_BOOL(pzv, 1);</td>
+			</tr>
+			<tr>
+				<td>ZVAL_FALSE(pzv); <span class="ps">(将pzv所指的zval设置为IS_BOOL类型，值是false)</span></td>
+				<td>ZVAL_BOOL(pzv, 0);</td>
+			</tr>
+			<tr>
+				<td>ZVAL_LONG(pzv, l);  <span class="ps">(将pzv所指的zval设置为IS_LONG类型，值是l)</span></td>
+				<td>Z_TYPE_P(pzv) = IS_LONG;<br />Z_LVAL_P(pzv) = l;</td>
+			</tr>
+			<tr>
+				<td>ZVAL_DOUBLE(pzv, d); <span class="ps">(将pzv所指的zval设置为IS_DOUBLE类型，值是d)</span></td>
+				<td>Z_TYPE_P(pzv) = IS_DOUBLE;<br />Z_DVAL_P(pzv) = d;</td>
+			</tr>
+			<tr>
+				<td>ZVAL_STRINGL(pzv,str,len,dup);<span class="ps">(下面单独解释)</span></td>
+				<td>Z_TYPE_P(pzv) = IS_STRING;<br />Z_STRLEN_P(pzv) = len;<br />if (dup) <br />{Z_STRVAL_P(pzv) =estrndup(str, len + 1);} <br />else<br /> {Z_STRVAL_P(pzv) = str;}</td>
+			</tr>
+			
+			<tr>
+				<td>ZVAL_STRING(pzv, str, dup);</td>
+				<td>ZVAL _STRINGL(pzv, str,strlen(str), dup);</td>
+			</tr>
+			
+			<tr>
+				<td>ZVAL_RESOURCE(pzv, res);</td>
+				<td>Z_TYPE_P(pzv) = IS_RESOURCE;<br />Z_RESVAL_P(pzv) = res;</td>
+			</tr>
+			
+		</table></p>
+		<h3>ZVAL_STRINGL(pzv,str,len,dup)中的dup参数</h3>
+		<p>先阐述一下ZVAL_STRINGL(pzv,str,len,dup); str和len两个参数很好理解，因为我们知道内核中保存了字符串的地址和它的长度，后面的dup的意思其实很简单，它指明了该字符串是否需要被复制。值为 1 将先申请一块新内存并赋值该字符串，然后把新内存的地址复制给pzv，为 0 时则是直接把str的地址赋值给zval。《抚琴居》上的一篇文章说这项特性将会在你仅仅需要创建一个变量并将其指向一个已经由 Zend 内部数据内存时变得很有用。</p>
+		<h3>ZVAL_STRINGL与ZVAL_STRING的区别</h3>
+		<p>如果你想在某一位置截取该字符串或已经知道了这个字符串的长度，那么可以使用宏 ZVAL_STRINGL(zval, string, length, duplicate) ，它显示的指定字符串长度，而不是使用strlen()。这个宏该字符串长度作为参数。但它是二进制安全的，而且速度也比ZVAL_STRING快，因为少了个strlen。</p>
+		<h3>ZVAL_RESOURCE约等于ZVAL_LONG</h3>
+		<p>上一节中我们说过PHP中的资源类型的值其实就是一个整数，所以ZVAL_RESOURCE和ZVAL_LONG的工作差不多，只不过它会把zval的类型设置为 IS_RESOURCE.</p>
