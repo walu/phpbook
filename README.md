@@ -16,6 +16,7 @@
 ### 允许的html语法
 * h2、h3 代表标题。
 * p、ul、li。
+* 简单的style
 * `<code c>***</code> <code php>***</code>`分别用来高亮c与php的代码。
 
 ## 编译方法
