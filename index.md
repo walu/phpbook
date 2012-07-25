@@ -17,8 +17,8 @@
 	</ul>
 现在项目的第一期的工作(初译)已经完成了，正在进入后续发布工作，每校正完一节就发布一节，期间如果朋友你发现了错误，还请帮忙斧正，我将在项目日志里声明以示感谢。此外还希望你能持续关注本项目，让我们一起为中国PHP事业的发展奉献一份力量。<span style="color:red;font-weight:bold;">这个项目每一次的修正日志都将以以下方式公布，还请大家予以关注：</span>
    <ul style="color:red;">
-    <li> <b>微博：[http://weibo.com/walu](http://weibo.com/walu)</b></li>
-    <li>博客：[http://walu.sinaapp.com](http://walu.sinaapp.com)</li>
+    <li> <b>微博：[http://weibo.com/walu](<http://weibo.com/walu>)</b></li>
+    <li>博客：[http://walu.sinaapp.com](<http://walu.sinaapp.com>)</li>
 	</ul>
 本人不才，这个项目刚刚起步，我就已经碰到了很多的困难，期间得到了许多帮助，这里记录下来，以示感谢：
     <ul>
@@ -30,7 +30,7 @@
     <li>... ...
 	</ul>
 
-<h2>About Me</h2>
+## About Me
 网名：Walu<br /> 
 曾用名：Cnan<br /> 
 身份：一个爱骑bike的Coder<br /> 
