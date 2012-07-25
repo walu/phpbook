@@ -46,6 +46,7 @@ Blog:http://walu.sinaapp.com
 
 ## links
    * []()
-   * [《PHP扩展开发及内核应用》目录](<chpreface.md>)
+   * [《PHP扩展开发及内核应用》目录](<preface.md>)
 
-## LastModified 2012-07-25
+## LastModified 
+   * $Id$

@@ -176,7 +176,8 @@
 
 
 ## links
-   * [《PHP扩展开发及内核应用》](<chindex.md>)
-   * [PHP中的面向对象（一）](<ch1.md>)
+   * [《PHP扩展开发及内核应用》](<index.md>)
+   * [PHP中的面向对象（一）](<1.md>)
 
-## LastModified 2012-07-25
+## LastModified 
+   * $Id$
