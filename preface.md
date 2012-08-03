@@ -64,7 +64,7 @@
       * 2. [MINFO与phpinfo](12.2.md)
       * 3. [常量](12.3.md)
       * 4. [PHP扩展中的全局变量](12.4.md)
-      * 5. [PHP语言中的超级变量](12.5.md)
+      * 5. [PHP语言中的超级全局变量](12.5.md)
       * 6. [小结](12.6.md)
    * 13. INI Settings
       * 1. Declaring and Accessing INI Settings
