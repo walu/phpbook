@@ -1,48 +1,10 @@
 <?php
 date_default_timezone_set("Asia/Shanghai");
 
-function id2key($id)
-{
-	if(!preg_match("!^[0-9]+(\\.[0-9]+)*$!",$id))
-	{
-		return $id;
-	}
-
-	$key = str_replace(".","","$id");
-	$key .= "00000000";
-	$key = substr($key,0,8);
-	return $key;
-}
-
-function page_link($id)
-{
-	if(preg_match("!^[0-9]+(\\.[0-9]+)*$!",$id))
-	{
-		return "ch{$id}.html";
-	}
-	else
-	{
-		return "{$id}.html";
-	}
-}
-
 $path = dirname(__FILE__);
 
-/*
- array(
-	"key"=>array(
-		'id'=>'1.1',
-		'title'=>'',
-		'prev'=>'',
-		'next',
-		'content'
-	)
- )
-*/
-$c = array();
-
 //获取文件列表
-$file_list = glob("*.txt");
+$file_list = glob("*.md");
 
 /*
  章节号转成key
@@ -50,29 +12,22 @@ $file_list = glob("*.txt");
 */
 foreach($file_list as $value)
 {
-	$id = basename($value,".txt");
+	$id = basename($value,".md");
 
 	$key = id2key($id);
-	
-	//开始读这篇文章
-	$page = file_get_contents($value);
-	$tmp = strpos($page,"#");
-	if($tmp === false)
-	{
-		trigger_error("{$value}文件没有meta信息",E_USER_ERROR);
-	}
-	
-	$repeat_count = 1;
-	
-	$meta = substr($page,0,strpos($page,"#")+1);
-	$content = str_replace($meta,"",$page,$repeat_count);
-	
-	$meta = trim($meta,"#");
-	$meta = preg_split("![\\n\\r]+!",trim($meta));
-	if(count($meta)!=3)
-	{
-		trigger_error("{$value}文件的meta信息不全",E_USER_ERROR);
-	}
+    
+    $body = file($value);
+
+    $h1 = '';
+
+    foreach ($body as $k=>$v) {
+        if (preg_match('!^#([^#])$!', $v, $m)) {
+            $h1 = $m[1];
+            unset($body[$k]);
+        } elseif (preg_match('!^## links!', $v, $m)) {
+            //接下来的两行是link
+        }
+    }
 
 	//对content的code部分进行处理
 	$content = preg_replace_callback(
