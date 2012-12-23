@@ -1,6 +1,6 @@
 # 《PHP扩展开发及内核应用》
 11年年初因兴趣建立此项目，有幸得到大家关注，万分荣幸。现在把他迁移到github上，以方便更多人参与进来。
-项目阅读地址：http://phpbook.sinaapp.com
+项目阅读地址：[http://www.walu.cc/phpbook](<http://www.walu.cc/phpbook>)
 
 ## 撰写方法
 ### 认领内容
@@ -12,7 +12,7 @@
 请参看已有章节的规范, 要注意的是, 每个章节在底部都需要有一个links节, 包含"目录", "上一节", "下一节"的链接
 
 ## 编译方法
-编写完成后，在项目目录里执行php build.php便可。
+定期同步到phpbook
 
 ## 开始阅读
 [开始阅读](<phpbook/blob/master/index.md>)
