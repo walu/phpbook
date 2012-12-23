@@ -7,15 +7,18 @@
    * 我希望你能在Linux上来实践这个项目里的东西，那会比较容易一些，当然win也没关系。
 
 本项目不是一个翻译工作，而是以翻译为起点的一个系统的、持续的跟踪介绍PHP内核相关知识的系统，相对于原书来讲，本项目的内容有以下不同
+   
    * 基准PHP版本由5.1改为了5.3.6，也就是说本书的例子默认都是以PHP5.3.6为例的。
    * 改写了大部分例子，方便像我一样的初学者。
    * 会根据PHP的发展与自身的进步不断添加新的内容、优化原有内容。
 
 现在项目的第一期的工作(初译)已经完成了，正在进入后续发布工作，每校正完一节就发布一节，期间如果朋友你发现了错误，还请帮忙斧正，我将在项目日志里声明以示感谢。此外还希望你能持续关注本项目，让我们一起为中国PHP事业的发展奉献一份力量。<span style="color:red;font-weight:bold;">这个项目每一次的修正日志都将以以下方式公布，还请大家予以关注：</span>
-   * *微博： [http://weibo.com/walu](http://weibo.com/walu)*
-   * *博客： [http://walu.sinaapp.com](http://walu.sinaapp.com)*
+   
+   * 微博： [http://weibo.com/walu](http://weibo.com/walu)
+   * 博客： [http://walu.sinaapp.com](http://walu.sinaapp.com)
 
 本人不才，这个项目刚刚起步，我就已经碰到了很多的困难，期间得到了许多帮助，这里记录下来，以示感谢：
+   
    * 感谢Sara在2005年创作了[本书](http://www.amazon.com/Extending-Embedding-PHP-Sara-Golemon/dp/067232704X)。
    * 感谢小胖姜。
    * 感谢laruence大牛与你的[博客](http://www.laruence.com)。
@@ -23,6 +26,7 @@
    * ....
 
 ## About Me
+   
    * 网名：Walu
    * 曾用名：Cnan
    * 身份：一个爱骑bike的Coder
@@ -30,15 +34,14 @@
    * 关注：安全、性能
    * 联系：imcnanΘgmail.com
    * Blog:http://walu.sinaapp.com
-
    * 11年末拿到了百度的船票。
+    
     10年一月份踏出学校进入所谓的社会混迹于当时的青岛普加。 
+    
     当前主要使用PHP进行Web开发，研究PHP内核和扩展开发，偶尔前端缺人，我也会顶上去写Js和css。PS就算了，我不会。 
+    
     我不是DBA，也不会难得一见的db种类，我只是mysql普通用户与mongodb的低度用户。 
 
 
 ## links
    * [目录](<preface.md>)
-
-## LastModified 
-   * $Id$
