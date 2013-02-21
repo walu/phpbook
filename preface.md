@@ -70,47 +70,46 @@
       4. [PHP扩展中的全局变量](12.4.md)
       5. [PHP语言中的超级全局变量](12.5.md)
       6. [小结](12.6.md)
-   13. INI Settings
-      1. Declaring and Accessing INI Settings
-      2. Summary
-   14. Accessing Streams
-      1. Streams Overview
-      2. Opening Streams
-      3. Accessing Streams
-      4. Static Stream Operations
-      5. Summary
-   15. Implementing Streams
-      1. PHP Streams Below the Surface
-      2. Wrapper Operations
-      3. Implementing a Wrapper
-      4. Manipulation
-      5. Inspection
-      6. Summary
-   16. Diverting the Stream
-      1. Contexts
-      2. Filters
-      3. Summary
-   17. Configuration and Linking
-      1. Autoconf
-      2. Looking for Libraries
-      3. Enforcing Module Dependencies
-      4. Speaking the Windows Dialect
-      5. Summary
-   18. 扩展生成器
-      1. ext_skel生成器
-      2. PECL_Gen生成器
-      3. 小结
-   19. Setting Up a Host Environment
-      1. The Embed SAPI
-      2. Building and Compiling a Host Application
-      3. Re-creating CLI by Wrapping Embed
-      4. Reusing Old Tricks
-      5. Summary
-   20. Advanced Embedding
-      1. Calling Back into PHP
-      2. Dealing with Errors
-      3. Initializing PHP
-      4. Overriding INI_SYSTEM and INI_PERDIR Options
-      5. Capturing Output
-      6. Extending and Embedding at Once
-      7. Summary
+   13. INI Settings [ini配置文件](<13.md>)
+      1. [读写ini配置](<13.1.md>)
+      2. [小结](13.2.md)
+   14. [流式访问](<14.md>)
+      1. [流的概览](<14.1.md>)
+      2. [打开与读写流](<14.3.md>)
+      3. [Static Stream Operations](<14.3.md>)
+      4. [小结](<14.4.md>)
+   15. [流的实现](<15.md>)
+      1. [PHP Streams的本质](<15.1.md>)
+      2. [流的封装——wrapper](<15.2.md>)
+      3. [实现wrapper](<15.3.md>)
+      4. [Manipulation](<15.4.md>)
+      5. [状态与属性读取](<15.5.md>)
+      6. [小结](<15.6.md>)
+   16. [有趣的流](<16.md>)
+      1. [流的上下文](<16.1.md>)
+      2. [流的过滤器](<16.2.md>)
+      3. [小结](<16.3.md>)
+   17. [Configuration and Linking](<17.md>)
+      1. [Autoconf](<17.1.md>)
+      2. [Looking for Libraries](<17.2.md>)
+      3. [Enforcing Module Dependencies](<17.3.md>)
+      4. [Speaking the Windows Dialect](<17.4.md>)
+      5. [Summary](<17.5.md>)
+   18. [扩展生成器](<18.md>)
+      1. [ext_skel生成器](<18.1.md>)
+      2. [PECL_Gen生成器](<18.2.md>)
+      3. [小结](<18.3.md>)
+   19. [Setting Up a Host Environment](<19.md>)
+      1. [The Embed SAPI](<19.1.md>)
+      2. [Building and Compiling a Host Application](<19.2.md>)
+      3. [Re-creating CLI by Wrapping Embed](<19.3.md>)
+      4. [Reusing Old Tricks](<19.4.md>)
+      5. [Summary](<19.5.md>)
+   20. [Advanced Embedding](<20.md>)
+      1. [Calling Back into PHP](<20.1.md>)
+      2. [Dealing with Errors](<20.2.md>)
+      3. [Initializing PHP](<20.3.md>)
+      4. [Overriding INI_SYSTEM and INI_PERDIR Options](<20.4.md>)
+      5. [Capturing Output](<20.5.md>)
+      6. [Extending and Embedding at Once](<20.6.md>)
+      7. [Summary](<20.7.md>)

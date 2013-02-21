@@ -1,5 +1,9 @@
 # PHP扩展开发及内核应用
 
+[**开始阅读**](<preface.md>)
+
+## 介绍
+
 虽然用了书名号，但它是我的一个业余项目而已，它以Sara Golemon在2005年著作的《Extending and Embedding PHP》一书为蓝本翻译修改而来。这里先对Sara女士表示感谢，为我们奉献了这么优秀的一本技术图书。截止到目前（2011年），这几年以来，PHP的应用在中国突飞猛进，已经渗透到了互联网的各个方面，现在每个公司里都不可能一点没有PHP的影子了。有关PHP语言自身的书籍也是层出不穷，而有关PHP扩展开发以及PHP内核方面的文字却都比较零散，比较系统的有TIPI项目、Zend上面的几篇文章以及《Extending and Embedding PHP》这本书的英文版，不能不说这直接限制住了部分人在PHP语言上的深入研究与学习。我在学校的时候就翻阅过这本书的电子版，但因为是英文的终究没有在那时深入研究下去，也算是一件憾事。
 浏览本项目，希望你已经具备以下技能：
 
@@ -8,14 +12,13 @@
 
 本项目不是一个翻译工作，而是以翻译为起点的一个系统的、持续的跟踪介绍PHP内核相关知识的系统，相对于原书来讲，本项目的内容有以下不同
    
-   * 基准PHP版本由5.1改为了5.3.6，也就是说本书的例子默认都是以PHP5.3.6为例的。
+   * 基准PHP版本由5.1改为了5.3.6，也就是说本书的例子默认都是以PHP5.3.6为例的。**记录的是2011年初次编辑的时候**
    * 改写了大部分例子，方便像我一样的初学者。
    * 会根据PHP的发展与自身的进步不断添加新的内容、优化原有内容。
 
 现在项目的第一期的工作(初译)已经完成了，正在进入后续发布工作，每校正完一节就发布一节，期间如果朋友你发现了错误，还请帮忙斧正，我将在项目日志里声明以示感谢。此外还希望你能持续关注本项目，让我们一起为中国PHP事业的发展奉献一份力量。<span style="color:red;font-weight:bold;">这个项目每一次的修正日志都将以以下方式公布，还请大家予以关注：</span>
    
    * 微博： [http://weibo.com/walu](http://weibo.com/walu)
-   * 博客： [http://walu.sinaapp.com](http://walu.sinaapp.com)
 
 本人不才，这个项目刚刚起步，我就已经碰到了很多的困难，期间得到了许多帮助，这里记录下来，以示感谢：
    
@@ -25,23 +28,16 @@
    * 感谢TIPI项目, Goolg, Baidu。
    * ....
 
-## About Me
-   
-   * 网名：Walu
-   * 曾用名：Cnan
-   * 身份：一个爱骑bike的Coder
-   * 愿望：观音菩萨给一滴甘露，治好我的400度的近视。
-   * 关注：安全、性能
-   * 联系：imcnanΘgmail.com
-   * Blog:http://walu.sinaapp.com
-   * 11年末拿到了百度的船票。
-    
-    10年一月份踏出学校进入所谓的社会混迹于当时的青岛普加。 
-    
-    当前主要使用PHP进行Web开发，研究PHP内核和扩展开发，偶尔前端缺人，我也会顶上去写Js和css。PS就算了，我不会。 
-    
-    我不是DBA，也不会难得一见的db种类，我只是mysql普通用户与mongodb的低度用户。 
 
+##《PHP扩展开发与内核应用》贡献者名单
+
+根据首次参与时间，升序排列：
+ 
+ * Walu, [weibo.com/walu](<http://weibo.com/walu>)，[site](<http://www.walu.cc>)，项目发起人。
+ * Laruence, [weibo.com/laruence](<weibo.com/laruence>)，[Blog](<http://www.laruence.com>)，PHP开发组成员, Yaf, Taint, APC等Pecl扩展作者、维护者。鸟哥，不知道的话你就out了...
+ * Demon，[weibo.com/409238807](<http://weibo.com/409238807>)，12章内容贡献者。
+ * 花生，[weibo.com/wenjuncool](<http://weibo.com/wenjuncool>)，校正&优化。
+ * Guoguo，[github.com/goosman-lei](<https://github.com/goosman-lei/>)，14-20章内容贡献者。
 
 ## links
    * [目录](<preface.md>)
