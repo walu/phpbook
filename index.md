@@ -35,9 +35,9 @@
  
  * Walu, [weibo.com/walu](<http://weibo.com/walu>)，[site](<http://www.walu.cc>)，项目发起人。
  * Laruence, [weibo.com/laruence](<weibo.com/laruence>)，[Blog](<http://www.laruence.com>)，PHP开发组成员, Yaf, Taint, APC等Pecl扩展作者、维护者。鸟哥，不知道的话你就out了...
- * Demon，[weibo.com/409238807](<http://weibo.com/409238807>)，12章内容贡献者。
+ * Demon，[weibo.com/409238807](<http://weibo.com/409238807>)，[Blog](<http://www.demon.at>)，12章内容贡献者。
  * 花生，[weibo.com/wenjuncool](<http://weibo.com/wenjuncool>)，校正&优化。
- * Guoguo，[github.com/goosman-lei](<https://github.com/goosman-lei/>)，14-20章内容贡献者。
+ * Guoguo，[blog@csdn](<http://blog.csdn.net/lgg201>)，14-20章内容贡献者。
 
 ## links
    * [目录](<preface.md>)
