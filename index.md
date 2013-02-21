@@ -25,7 +25,7 @@
    * 感谢Sara在2005年创作了[本书](http://www.amazon.com/Extending-Embedding-PHP-Sara-Golemon/dp/067232704X)。
    * 感谢小胖姜。
    * 感谢laruence大牛与你的[博客](http://www.laruence.com)。
-   * 感谢TIPI项目, Goolg, Baidu。
+   * 感谢TIPI项目, Google, Baidu。
    * ....
 
 
