@@ -25,7 +25,7 @@
    * 感谢Sara在2005年创作了[本书](http://www.amazon.com/Extending-Embedding-PHP-Sara-Golemon/dp/067232704X)。
    * 感谢小胖姜。
    * 感谢laruence大牛与你的[博客](http://www.laruence.com)。
-   * 感谢TIPI项目, Goolg, Baidu。
+   * 感谢TIPI项目, Google, Baidu。
    * ....
 
 
@@ -34,10 +34,10 @@
 根据首次参与时间，升序排列：
  
  * Walu, [weibo.com/walu](<http://weibo.com/walu>)，[site](<http://www.walu.cc>)，项目发起人。
- * Laruence, [weibo.com/laruence](<weibo.com/laruence>)，[Blog](<http://www.laruence.com>)，PHP开发组成员, Yaf, Taint, AP
- * Demon，[weibo.com/409238807](<http://weibo.com/409238807>)，12章内容贡献者。
+ * Laruence, [weibo.com/laruence](<weibo.com/laruence>)，[Blog](<http://www.laruence.com>)，PHP开发组成员, Yaf, Taint, APC等Pecl扩展作者、维护者。鸟哥，不知道的话你就out了...
+ * Demon，[weibo.com/409238807](<http://weibo.com/409238807>)，[Blog](<http://www.demon.at>)，12章内容贡献者。
  * 花生，[weibo.com/wenjuncool](<http://weibo.com/wenjuncool>)，校正&优化。
- * Guoguo，[github.com/goosman-lei](<https://github.com/goosman-lei/>)，14-20章内容贡献者。
+ * Guoguo，[blog@csdn](<http://blog.csdn.net/lgg201>)，14-20章内容贡献者。
 
 ## links
    * [目录](<preface.md>)
