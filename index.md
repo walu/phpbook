@@ -1,6 +1,6 @@
 # PHP扩展开发及内核应用
 
-[**开始阅读**](<preface.md>)
+<span style='font-size:20px'>[**开始阅读**](<preface.md>)</span>
 
 ## 介绍
 
@@ -39,5 +39,5 @@
  * 花生，[weibo.com/wenjuncool](<http://weibo.com/wenjuncool>)，校正&优化。
  * Guoguo，[blog@csdn](<http://blog.csdn.net/lgg201>)，14-20章内容贡献者。
 
-## links
+## links  **点击下面的目录开始阅读**
    * [目录](<preface.md>)
