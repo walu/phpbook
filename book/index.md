@@ -1,6 +1,6 @@
 # PHP扩展开发及内核应用
 
-<span style='font-size:20px'>[**开始阅读**](<preface.md>)</span>
+<span style='font-size:20px'>[**开始阅读**](</book/preface.md>)</span>
 
 ## 介绍
 
@@ -40,4 +40,4 @@
  * Guoguo，[blog@csdn](<http://blog.csdn.net/lgg201>)，14-20章内容贡献者。
 
 ## links  **点击下面的目录开始阅读**
-   * [目录](<preface.md>)
+   * [目录](</book/preface.md>)
