@@ -15,4 +15,4 @@
 定期同步到phpbook
 
 ## 开始阅读
-[开始阅读](<index.md>)
+[开始阅读](</book/index.md>)
